@@ -13,16 +13,16 @@ public class PostGetResponseDto {
     private String content;
     private Long postId;
     private Long uploader;
-    private String filePath;
+    private Long fileId;
     private String uploaderName;
 
     @Builder
-    public PostGetResponseDto(String title, String content, Long postId, Long uploader, String filePath, String uploaderName) {
+    public PostGetResponseDto(String title, String content, Long postId, Long uploader, Long fileId, String uploaderName) {
         this.title = title;
         this.content = content;
         this.postId = postId;
         this.uploader = uploader;
-        this.filePath = filePath;
+        this.fileId = fileId;
         this.uploaderName = uploaderName;
     }
 }

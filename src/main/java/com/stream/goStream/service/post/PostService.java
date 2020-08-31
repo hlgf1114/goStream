@@ -4,10 +4,12 @@ package com.stream.goStream.service.post;
 import com.stream.goStream.domain.file.File;
 import com.stream.goStream.domain.member.Member;
 import com.stream.goStream.domain.member.MemberRepository;
+import com.stream.goStream.domain.member.dto.MemberGetResponseDto;
 import com.stream.goStream.domain.post.Post;
 import com.stream.goStream.domain.post.PostRepository;
 import com.stream.goStream.domain.post.dto.PostGetResponseDto;
 import com.stream.goStream.domain.post.dto.PostSaveRequestDto;
+import com.stream.goStream.service.member.MemberService;
 import com.stream.goStream.utils.ManageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     public List<PostGetResponseDto> getAllPosts() {
 
@@ -39,7 +41,7 @@ public class PostService {
                     .uploader(p.getMember().getId())
                     .uploaderName(p.getMember().getName())
                     .postId(p.getId())
-                    .filePath(p.getFile().getFilePath())
+                    .fileId(p.getFile().getId())
                     .build();
 
             result.add(temp);
@@ -51,8 +53,7 @@ public class PostService {
     @Transactional
     public Long savePost(PostSaveRequestDto requestDto) {
 
-        Member member = memberRepository.findById(requestDto.getUploader()).get();
-
+        Member member = memberService.findMember(requestDto.getUploader());
 
         // 파일 저장 부분
         MultipartFile upload = requestDto.getFile();

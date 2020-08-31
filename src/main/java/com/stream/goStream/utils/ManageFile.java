@@ -4,6 +4,7 @@ import org.jcodec.api.FrameGrab;
 import org.jcodec.api.JCodecException;
 import org.jcodec.common.model.Picture;
 import org.jcodec.scale.AWTUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -16,16 +17,17 @@ import java.util.UUID;
 
 public class ManageFile {
 
+
     public static String saveFile(MultipartFile file) throws IOException {
-        String imagePath = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/file/").toUriString();
+
+        final String path = "R://";
 
         UUID uuid = UUID.randomUUID();
 
         String filename = file.getOriginalFilename();
         String fileExtension = filename.substring(filename.lastIndexOf("."), filename.length());
 
-        File folder = new File(imagePath + uuid.toString());
+        File folder = new File(path + uuid.toString());
 
         // 폴더가 존재 하지 않는다면
         if(!folder.exists()) {
@@ -35,7 +37,7 @@ public class ManageFile {
 
         }
 
-        String filePath = imagePath + uuid.toString() + "/" + uuid.toString() + fileExtension;
+        String filePath = path + uuid.toString() + "/" + uuid.toString() + fileExtension;
 
         FileOutputStream output = new FileOutputStream(filePath);
         output.write(file.getBytes());
@@ -50,8 +52,6 @@ public class ManageFile {
 
         BufferedImage bufferedImage = AWTUtil.toBufferedImage(picture);
         ImageIO.write(bufferedImage, "png", output);
-
-
 
     }
 
