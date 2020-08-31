@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    인덱스 페이지 입니다.
+    <br>
+    <br>
+    <a href="/write" type="button">글 쓰기</a>
+    <br>
+    <br>
+    {{^memberName}}
+    <a type="button" href="/oauth2/authorization/google">로그인</a>
+    {{/memberName}}
+    {{#memberName}}
+        {{memberName}}
+    {{/memberName}}
+</body>
+</html>

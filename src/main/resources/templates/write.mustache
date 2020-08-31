@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>쓰기</title>
+    <link rel="stylesheet" type="text/css" href="/css/main/main.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>작성자</th>
+                <th>게시글 이름</th>
+                <th>콘텐츠</th>
+                <th>업로드</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><textarea id="id" readonly>{{member.id}}</textarea></td>
+                <td><input type="text" id="title"></td>
+                <td><input type="text" id="content"></td>
+                <td>
+                    <input type="file" id="uploadVideo">
+                    <div class="progress">
+                        <div class="bar"></div>
+                        <div class="percent">0%</div>
+                    </div>
+                    <div id="status"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" id="btn-save">저장</button>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
