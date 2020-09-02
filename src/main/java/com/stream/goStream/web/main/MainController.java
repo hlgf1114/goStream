@@ -19,17 +19,7 @@ public class MainController {
     private final HttpSession httpSession;
     private final PostService postService;
 
-    @GetMapping("/posts")
-    public String getPosts(Model model) {
 
-
-        List<PostGetResponseDto> posts = postService.getAllPosts();
-
-        if(posts != null)
-            model.addAttribute("postList", posts);
-
-        return "post/post_list";
-    }
 
     @GetMapping("/")
     public String index(Model model) {

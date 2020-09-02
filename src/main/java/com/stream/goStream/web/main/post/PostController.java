@@ -10,11 +10,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Controller
 public class PostController {
 
-    private PostService postService;
+    private final PostService postService;
+
+    @GetMapping("/posts")
+    public String getPosts(Model model) {
 
 
+        List<PostGetResponseDto> posts = postService.getAllPosts();
+
+        if(posts != null)
+            model.addAttribute("postList", posts);
+
+        return "post/post_list";
+    }
 
 }
