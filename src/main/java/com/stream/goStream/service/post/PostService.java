@@ -26,6 +26,23 @@ public class PostService {
     private final PostRepository postRepository;
     private final MemberService memberService;
 
+    public PostGetResponseDto getPost(Long postId) {
+
+        Post post = postRepository.findById(postId).get();
+
+        if(post == null) return null;
+
+        PostGetResponseDto dto = PostGetResponseDto.builder()
+                .content(post.getContent())
+                .fileId(post.getFile().getId())
+                .postId(post.getId())
+                .title(post.getTitle())
+                .uploader(post.getMember().getId())
+                .build();
+
+        return dto;
+    }
+
     public List<PostGetResponseDto> getAllPosts() {
 
 

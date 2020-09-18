@@ -4,21 +4,15 @@
     <meta charset="UTF-8">
 </head>
 <body>
-포스트
-
-{{#postList}}
-    <table>
-        <tbody>
-        <tr>
-            <td><video controls src="/api/video/{{fileId}}">안됨</video></td>
-            <td>{{title}}</td>
-            <td>{{uploaderName}}</td>
-        </tr>
-        </tbody>
-    </table>
-{{/postList}}
-{{^postList}}
-    맞는 게시글이 없습니다.
-{{/postList}}
+<table>
+    <tbody>
+    <tr>
+        <td>{{post.title}}</td>
+        <td><video controls src="/api/video/{{post.fileId}}">지원하지 않는 브라우저</video></td>
+        <td>{{post.uploader}}</td>
+        <td>{{post.content}}</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
