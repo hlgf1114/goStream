@@ -5,9 +5,7 @@ import com.stream.goStream.domain.post.dto.PostSaveRequestDto;
 import com.stream.goStream.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +21,12 @@ public class PostApiController {
         return postService.savePost(requestDto);
     }
 
+    @DeleteMapping("/api/post/{postId}")
+    public void delete(@PathVariable(name = "postId") Long postId){
 
+        postService.deletePost(postId);
+
+    }
 
 
 

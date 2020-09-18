@@ -26,6 +26,10 @@ public class PostService {
     private final PostRepository postRepository;
     private final MemberService memberService;
 
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
+    }
+
     public PostGetResponseDto getPost(Long postId) {
 
         Post post = postRepository.findById(postId).get();

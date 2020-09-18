@@ -8,6 +8,10 @@ var main = {
             _this.save();
         });
 
+        $('#btn-delete').on('click', function () {
+            _this.delete();
+        })
+
     },
 
     save : function () {
@@ -73,6 +77,22 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+
+    delete : function() {
+
+        $.ajax({
+            type : 'DELETE',
+            dataType : 'text',
+            url : "/api/post/" + $('#postId').val(),
+        }).done(function (result) {
+            alert('게시물을 삭제 완료했습니다.');
+            window.location.href="/postlist";
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+
+
     }
 }
 
