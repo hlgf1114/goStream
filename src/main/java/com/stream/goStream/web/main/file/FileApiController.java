@@ -30,7 +30,7 @@ public class FileApiController {
 
     private final FileService fileService;
 
-    @RequestMapping("/api/downloadVideo/{fileId}")
+    @RequestMapping("/api/video/{fileId}")
     // @ResponseBody
     public String streamVideo(
             @PathVariable(value = "fileId") Long fileId,

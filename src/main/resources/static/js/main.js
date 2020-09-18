@@ -51,7 +51,7 @@ var main = {
                 return xhr;
             },
             type : 'POST',
-            url : '/api/uploadPost',
+            url : '/api/post',
             data : postData,
             contentType: false,
             processData: false,

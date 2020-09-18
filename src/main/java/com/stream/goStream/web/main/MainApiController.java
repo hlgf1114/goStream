@@ -14,14 +14,5 @@ import java.io.IOException;
 @RestController
 public class MainApiController {
 
-    private final PostService postService;
-
-    private final HttpSession httpSession;
-
-    @PostMapping("/api/uploadPost")
-    public Long save(@ModelAttribute PostSaveRequestDto requestDto) {
-        return postService.savePost(requestDto);
-    }
-
 
 }
