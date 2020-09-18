@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -93,6 +94,11 @@ public class FileApiController {
             response.setHeader("Content-Range", "bytes " + rangeStart + "-" + rangeEnd + "/" + videoSize);
             response.setHeader("Accept-Ranges", "bytes");
             response.setHeader("Content-Length", "" + partSize);
+            
+            // Content-Type 수정
+            String MimeType = Files.probeContentType(Paths.get(dto.getFilePath()));
+            response.setContentType(MimeType);
+
 
             int bufferSize = dto.getFileSize().intValue() / 100;
 
