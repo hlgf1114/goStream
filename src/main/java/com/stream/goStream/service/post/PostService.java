@@ -27,7 +27,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final MemberService memberService;
 
-    public void updatePost(PostUpdateRequestDto dto) {
+    public Long updatePost(PostUpdateRequestDto dto) {
 
         Long postId = dto.getPostId();
         String title = dto.getTitle();
@@ -35,12 +35,10 @@ public class PostService {
 
         Post p = postRepository.findById(postId).get();
 
-        if(p == null) return;
-
-        // 업데이터
+        // 업데이트
         p.update(title, content);
 
-        return;
+        return p.getId();
     }
 
     public void deletePost(Long postId) {

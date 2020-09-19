@@ -29,10 +29,9 @@ public class PostApiController {
 
     }
     
-    @PutMapping("/api/post")
-    public void update(@ModelAttribute PostUpdateRequestDto requestDto) {
-
-        postService.updatePost(requestDto);
+    @PutMapping("/api/post/{postId}")
+    public Long update(@ModelAttribute PostUpdateRequestDto requestDto) {
+        return postService.updatePost(requestDto);
 
     }
 

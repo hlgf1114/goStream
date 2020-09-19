@@ -108,12 +108,13 @@ var main = {
         var postData = new FormData();
         postData.append('title', title);
         postData.append('content', content);
-        postData.append('uploader', postId);
+        postData.append('postId', postId);
 
         $.ajax({
             type : 'PUT',
-            url : "/api/post",
-            contentType : 'application/json; charset=utf-8',
+            url : "/api/post/" + postId,
+            contentType : false,
+            processData : false,
             data : postData
         }).done(function(result) {
             alert("변경 성공");
