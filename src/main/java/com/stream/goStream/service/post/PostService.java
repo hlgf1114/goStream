@@ -9,6 +9,7 @@ import com.stream.goStream.domain.post.Post;
 import com.stream.goStream.domain.post.PostRepository;
 import com.stream.goStream.domain.post.dto.PostGetResponseDto;
 import com.stream.goStream.domain.post.dto.PostSaveRequestDto;
+import com.stream.goStream.domain.post.dto.PostUpdateRequestDto;
 import com.stream.goStream.service.member.MemberService;
 import com.stream.goStream.utils.ManageFile;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,22 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final MemberService memberService;
+
+    public void updatePost(PostUpdateRequestDto dto) {
+
+        Long postId = dto.getPostId();
+        String title = dto.getTitle();
+        String content = dto.getContent();
+
+        Post p = postRepository.findById(postId).get();
+
+        if(p == null) return;
+
+        // 업데이터
+        p.update(title, content);
+
+        return;
+    }
 
     public void deletePost(Long postId) {
         postRepository.deleteById(postId);

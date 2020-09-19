@@ -39,4 +39,14 @@ public class PostController {
 
     }
 
+    @GetMapping("/post/update/{postId}")
+    public String getUpdate(Model model, @PathVariable(name = "postId") Long postId) {
+
+        PostGetResponseDto dto = postService.getPost(postId);
+
+        model.addAttribute("post", dto);
+
+        return "post/post_update";
+    }
+
 }

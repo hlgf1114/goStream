@@ -10,6 +10,10 @@ var main = {
 
         $('#btn-delete').on('click', function () {
             _this.delete();
+        });
+
+        $('#btn-update').on('click', function() {
+            _this.update();
         })
 
     },
@@ -92,6 +96,31 @@ var main = {
             alert(JSON.stringify(error));
         });
 
+
+    },
+
+    update : function() {
+
+        var title = $('#title').val();
+        var content = $('#content').val();
+        var postId = $('#id').val();
+
+        var postData = new FormData();
+        postData.append('title', title);
+        postData.append('content', content);
+        postData.append('uploader', postId);
+
+        $.ajax({
+            type : 'PUT',
+            url : "/api/post",
+            contentType : 'application/json; charset=utf-8',
+            data : postData
+        }).done(function(result) {
+            alert("변경 성공");
+            window.location.href="/post/" + postId;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
 
     }
 }

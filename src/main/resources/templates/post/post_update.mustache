@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>수정</title>
+    <link rel="stylesheet" type="text/css" href="/css/main/main.css">
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>작성자</th>
+        <th>게시글 이름</th>
+        <th>콘텐츠</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><textarea id="id" readonly>{{post.postId}}</textarea></td>
+        <td><input type="text" id="title"></td>
+        <td><input type="text" id="content"></td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" id="btn-update">변경</button>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
