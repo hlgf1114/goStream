@@ -49,8 +49,6 @@ public class PostService {
 
         Post post = postRepository.findById(postId).get();
 
-        if(post == null) return null;
-
         PostGetResponseDto dto = PostGetResponseDto.builder()
                 .content(post.getContent())
                 .fileId(post.getFile().getId())
