@@ -17,7 +17,7 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/postlist")
+    @GetMapping("/post")
     public String getPosts(Model model) {
 
         List<PostGetResponseDto> posts = postService.getAllPosts();
