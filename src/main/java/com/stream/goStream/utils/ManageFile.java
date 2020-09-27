@@ -17,10 +17,12 @@ import java.util.UUID;
 
 public class ManageFile {
 
+    final static String path = "R://";
+
 
     public static String saveFile(MultipartFile file) throws IOException {
 
-        final String path = "R://";
+
 
         UUID uuid = UUID.randomUUID();
 
@@ -41,6 +43,39 @@ public class ManageFile {
 
         FileOutputStream output = new FileOutputStream(filePath);
         output.write(file.getBytes());
+
+        return filePath;
+    }
+
+    public static String saveFile(MultipartFile file, MultipartFile picture) throws IOException {
+
+        UUID uuid = UUID.randomUUID();
+
+        String filename = file.getOriginalFilename();
+        String fileExtension = filename.substring(filename.lastIndexOf("."), filename.length());
+
+        File folder = new File(path + uuid.toString());
+
+        // 폴더가 존재 하지 않는다면
+        if(!folder.exists()) {
+
+            folder.mkdir();
+            System.out.println(folder.toString() + " is created");
+
+        }
+
+        String filePath = path + uuid.toString() + "/" + uuid.toString() + fileExtension;
+
+        FileOutputStream output = new FileOutputStream(filePath);
+        output.write(file.getBytes());
+
+        String picExtension = picture.getOriginalFilename();
+        picExtension = picExtension.substring(picExtension.lastIndexOf("."), picExtension.length());
+
+        String picturePath = path + uuid.toString() + "/" + uuid.toString() + picExtension;
+
+        FileOutputStream picOutput = new FileOutputStream(picturePath);
+        picOutput.write(picture.getBytes());
 
         return filePath;
     }

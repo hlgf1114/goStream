@@ -91,24 +91,23 @@ public class PostService {
         Member member = memberService.findMember(requestDto.getUploader());
 
         // 파일 저장 부분
-        MultipartFile upload = requestDto.getFile();
+        MultipartFile video = requestDto.getFile();
+        MultipartFile picture = requestDto.getPicture();
+
         String filePath = null;
         try {
-            filePath = ManageFile.saveFile(upload);
+            // 먼저 비디오와 썸네일을 저장한다.
+            if(picture == null || picture.isEmpty())
+                filePath = ManageFile.saveFile(video);
+            else filePath = ManageFile.saveFile(video, picture);
 
-            // 썸네일도 저장한다.
-            String thumbnailPath = filePath.substring(0, filePath.lastIndexOf("."));
-            thumbnailPath += ".png";
-            java.io.File dest = new java.io.File(thumbnailPath);
-
-            ManageFile.getThumbnail(new java.io.File(filePath), dest);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         File file = File.builder()
-                .originalFileName(upload.getOriginalFilename())
-                .fileSize(upload.getSize())
+                .originalFileName(video.getOriginalFilename())
+                .fileSize(video.getSize())
                 .filePath(filePath)
                 .build();
 

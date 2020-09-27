@@ -30,6 +30,7 @@ var main = {
         postData.append('content', $('#content').val());
         postData.append('uploader', $('#id').val());
         postData.append('file', $('#uploadVideo')[0].files[0]);
+        if($('#uploadPicture').val()) postData.append('picture', $('#uploadPicture')[0].files[0]);
         /*
         var file = $('#uploadVideo');
         var data = {

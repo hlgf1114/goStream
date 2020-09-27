@@ -11,13 +11,15 @@ public class FileGetResponseDto {
     private Long id;
     private String originalFileName;
     private String filePath;
+    private String thumbnailPath;
     private Long fileSize;
 
     @Builder
-    public FileGetResponseDto(Long id, String originalFileName, String filePath, Long fileSize) {
+    public FileGetResponseDto(Long id, String originalFileName, String filePath, String thumbnailPath, Long fileSize) {
         this.id = id;
         this.originalFileName = originalFileName;
         this.filePath = filePath;
+        this.thumbnailPath = thumbnailPath;
         this.fileSize = fileSize;
     }
 }

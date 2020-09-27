@@ -21,16 +21,18 @@ public class PostSaveRequestDto {
     private Member member;
     private Long uploader;
     private MultipartFile file;
+    private MultipartFile picture;
+
+
 
     @Builder
-    public PostSaveRequestDto(String title, String content,
-                              Member member, Long uploader,
-                              MultipartFile file) {
+    public PostSaveRequestDto(String title, String content, Member member, Long uploader, MultipartFile file, MultipartFile picture) {
         this.title = title;
         this.content = content;
         this.member = member;
         this.uploader = uploader;
         this.file = file;
+        this.picture = picture;
     }
 
 
