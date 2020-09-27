@@ -17,9 +17,6 @@ import java.util.List;
 public class MainController {
 
     private final HttpSession httpSession;
-    private final PostService postService;
-
-
 
     @GetMapping("/")
     public String index(Model model) {
@@ -32,14 +29,5 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/write")
-    public String writePost(Model model) {
-        SessionMember member = (SessionMember) httpSession.getAttribute("member");
-
-        model.addAttribute("member", member);
-
-        return "write";
-
-    }
 
 }
