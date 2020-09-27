@@ -12,7 +12,30 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Member findMember(Long id) {
+    public MemberGetResponseDto findMemberById(Long id) {
+
+        Member member = memberRepository.findById(id).get();
+
+        if(member == null) {
+            System.out.println("----------------------------");
+            System.out.println("사용자 없음");
+            System.out.println("----------------------------");
+            return null;
+        }
+
+        MemberGetResponseDto dto = MemberGetResponseDto.builder()
+                .id(member.getId())
+                .email(member.getEmail())
+                .name(member.getName())
+                .picture(member.getPicture())
+                .postList(member.getPostList())
+                .build();
+
+        return dto;
+
+    }
+
+    public Member findMemberEntityById(Long id) {
 
         Member member = memberRepository.findById(id).get();
 

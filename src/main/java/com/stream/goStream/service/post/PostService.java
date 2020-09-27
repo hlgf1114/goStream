@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Transactional
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
-    private final MemberService memberService;
 
+
+    @Transactional
     public Long updatePost(PostUpdateRequestDto dto) {
 
         Long postId = dto.getPostId();
@@ -85,10 +85,7 @@ public class PostService {
         return result;
     }
 
-    @Transactional
-    public Long savePost(PostSaveRequestDto requestDto) {
-
-        Member member = memberService.findMember(requestDto.getUploader());
+    public Long savePost(PostSaveRequestDto requestDto, Member member) {
 
         // 파일 저장 부분
         MultipartFile video = requestDto.getFile();
